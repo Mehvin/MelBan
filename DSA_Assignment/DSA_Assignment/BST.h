@@ -13,9 +13,13 @@ public:
 	// constructor
 	BST();
 
-	// search an item in the binary search tree
+	// check if value exists in the binary search tree
 	BinaryNode* search(ItemType target);
 	BinaryNode* search(BinaryNode* root, ItemType target);
+
+	// prints path to value, only if value exists in the binary search tree
+	string findPath(ItemType target);
+	BinaryNode* findPath(BinaryNode* root, ItemType target);
 
 	// insert an item to the binary search tree
 	void insert(ItemType item);

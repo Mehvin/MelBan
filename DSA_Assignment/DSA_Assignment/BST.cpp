@@ -5,8 +5,8 @@
 using namespace std;
 #include <cstddef>  // for NULL
 #include <new>      // for bad_alloc
+#include <string>
 #include "BST.h"
-
 
 // constructor
 BST::BST()
@@ -14,7 +14,7 @@ BST::BST()
 	root = NULL;
 }
 
-// search an item in the binary search tree
+// check if value exists in the binary search tree
 BinaryNode* BST::search(ItemType target)
 {
 	return search(root, target);
@@ -23,19 +23,66 @@ BinaryNode* BST::search(ItemType target)
 BinaryNode* BST::search(BinaryNode* t, ItemType target)
 {
 	if (t == NULL)	// item not found
+	{
 		return NULL;
+	}
 	else
 	{
 		if (t->item == target)	// item found
+		{
 			return t;
-		else
+		}
+		else 
+		{
 			if (target < t->item)	// search in left subtree
+			{
 				return search(t->left, target);
+			}
 			else // search in right subtree
+			{
 				return search(t->right, target);
+			}
+		}
 	}
 }
 
+// prints path to value, only if value exists in the binary search tree
+string BST::findPath(ItemType target)
+{
+	BinaryNode* p = search(target);
+	
+	if (p == NULL) 
+	{
+		return "Value not in tree!";
+	}
+	else 
+	{
+		cout << "Path: Root ";
+		findPath(root, target);
+		return "";
+	}
+}
+
+BinaryNode* BST::findPath(BinaryNode* t, ItemType target)
+{
+	if (t->item == target)	// item found
+	{
+		return t;
+	}
+	else
+	{
+		if (target < t->item)	// search in left subtree
+		{
+			cout << "-> L ";
+			return findPath(t->left, target);
+		}
+		else // search in right subtree
+		{
+			cout << "-> R ";
+			return findPath(t->right, target);
+		}
+	}
+}
 // insert an item to the binary search tree
 void BST::insert(ItemType item)
 {
@@ -156,7 +203,7 @@ void BST::inorder(BinaryNode* t)
 	if (t != NULL)
 	{
 		inorder(t->left);
-		cout << t->item << endl;
+		cout << t->item << ", ";
 		inorder(t->right);
 	}
 }

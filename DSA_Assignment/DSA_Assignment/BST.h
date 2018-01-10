@@ -13,6 +13,10 @@ public:
 	// constructor
 	BST();
 
+	//Search and Display Value in tree of searched node
+	BinaryNode* DisplayValue(ItemType nodeNum);
+	BinaryNode* SearchValue(BinaryNode* t, ItemType nodeNum);
+
 	// check if value exists in the binary search tree
 	BinaryNode* search(ItemType target);
 	BinaryNode* search(BinaryNode* root, ItemType target);

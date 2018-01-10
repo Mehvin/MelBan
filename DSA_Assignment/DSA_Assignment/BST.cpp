@@ -14,6 +14,16 @@ BST::BST()
 	root = NULL;
 }
 
+ItemType* BST::DisplayValue(ItemType nodeNum)
+{
+
+}
+
+BinaryNode* BST::SearchValue(BinaryNode* t, ItemType nodeNum)
+{
+
+}
+
 // check if value exists in the binary search tree
 BinaryNode* BST::search(ItemType target)
 {

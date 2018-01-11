@@ -7,6 +7,7 @@ using namespace std;
 #include <new>      // for bad_alloc
 #include <string>
 #include "BST.h"
+#include "List.h"
 
 // constructor
 BST::BST()
@@ -100,16 +101,27 @@ void BST::insert(BinaryNode* &t, ItemType item)
 		t = newNode;
 	}
 	else
-		if (item < t->item)
+		if (item < t->item) 
+		{
 			insert(t->left, item);  // insert in left subtree
-		else
+		}
+		else 
+		{
 			insert(t->right, item); // insert in right subtree
+		}
 }
 
 // delete an item from the binary search tree
-void BST::remove(ItemType target)
+bool BST::remove(ItemType target)
 {
+	int initialNoOfNodes = countNodes();
 	remove(root, target);
+	int afterChangeNoOfNodes = countNodes();
+
+	if (initialNoOfNodes == afterChangeNoOfNodes) 
+	{
+		return false; // return false = unsuccessful in removing
+	}
 }
 
 void BST::remove(BinaryNode* &t, ItemType target)
@@ -207,6 +219,25 @@ void BST::inorder(BinaryNode* t)
 		inorder(t->right);
 	}
 }
+
+// add all values to a given list
+List BST::listOfAllValues()
+{
+	List list;
+	listOfAllValues(root, list);
+	return list;
+}
+
+void BST::listOfAllValues(BinaryNode* t, List& list) // using in-order traversal, add all values to array
+{
+	if (t != NULL)
+	{
+		listOfAllValues(t->left, list);
+		list.add(t->item);
+		listOfAllValues(t->right, list);
+	}
+}
+
 // traverse the binary search tree in preorder
 void BST::preorder()
 {
@@ -284,18 +315,10 @@ bool BST::isBalanced(BinaryNode *t)
 {
 	if (t != NULL)
 	{
-		if (getHeight(t) < 4)
-		{
-			int leftHeight = getHeight(t->left);
-			int rightHeight = getHeight(t->right);
-
-			if (abs(leftHeight - rightHeight) <= 1)
-				return true;
-			else
-				return false;
-		}
-		else
-			return (isBalanced(t->left) && isBalanced(t->right));
+		int leftHeight = getHeight(t->left);	// height of left sub-tree
+		int rightHeight = getHeight(t->right);	// height of right sub-tree
+		bool isBalancedNode = (abs(leftHeight - rightHeight) <= 1);
+		return (isBalancedNode && isBalanced(t->left) && isBalanced(t->right));
 	}
 	else
 		return true;

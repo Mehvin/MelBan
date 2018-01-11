@@ -1,5 +1,5 @@
 // BST.h
-
+#pragma once
 #include "BinaryNode.h"
 
 class BST
@@ -14,8 +14,8 @@ public:
 	BST();
 
 	//Search and Display Value in tree of searched node
-	BinaryNode* DisplayValue(ItemType nodeNum);
-	BinaryNode* SearchValue(BinaryNode* t, ItemType nodeNum);
+	void DisplayValue(ItemType nodeNum);
+	void levelBylevelQueue(BinaryNode* t, ItemType level, int *intArray, int count);
 
 	// check if value exists in the binary search tree
 	BinaryNode* search(ItemType target);

@@ -14,14 +14,36 @@ BST::BST()
 	root = NULL;
 }
 
-ItemType* BST::DisplayValue(ItemType nodeNum)
+void BST::DisplayValue(ItemType nodeNum)
 {
+	int intArray[100];
+	int count = 0;
 
+	for (int i = 1; i <= getHeight(); i++)
+	{
+		levelBylevelQueue(root, i, intArray, count);
+		count++;
+
+	}
+	if (nodeNum - 1 <= count && nodeNum - 1 > -1)
+		cout << intArray[nodeNum - 1] << endl;
+	else
+		cout << "Node not found" << endl;
 }
 
-BinaryNode* BST::SearchValue(BinaryNode* t, ItemType nodeNum)
-{
-
+void BST::levelBylevelQueue(BinaryNode* t, ItemType level, int *intArray, int count)
+{	
+	if (t == NULL)
+		return;
+	if (level == 1)
+	{
+		intArray[count] = t->item;
+	}
+	else if (level > 1)
+	{
+		levelBylevelQueue(t->left, level - 1, intArray, count);
+		levelBylevelQueue(t->right, level - 1, intArray, count);
+	}
 }
 
 // check if value exists in the binary search tree
@@ -266,7 +288,6 @@ int BST::getHeight(BinaryNode* t)
 	if (t == NULL)
 		return 0;
 	else
-
 		return 1 + std::fmaxl(getHeight(t->left), getHeight(t->right));
 }
 

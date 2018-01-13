@@ -46,6 +46,13 @@ public:
 	void postorder();
 	void postorder(BinaryNode* t);
 
+	// return integer of value of given node no
+	int displayValueofNode(ItemType nodeNum);
+
+	// traverse the binary search tree level by level
+	List levelByLevel();
+	void levelByLevel(BinaryNode* t, ItemType level, List& list);
+
 	// compute the height of the binary search tree
 	int getHeight();
 	int getHeight(BinaryNode* t);
@@ -54,11 +61,14 @@ public:
 	int countNodes();
 	int countNodes(BinaryNode* t);
 
-	// check if the binary search tree is empty
-	bool isEmpty();
-
 	// check if the binary search tree is balanced
 	bool isBalanced();
 	bool isBalanced(BinaryNode *t);
 
+	// check if the binary search tree is empty
+	bool isEmpty();
+
+	// display tree
+	void displayTree();
+	void displayTree(BinaryNode *t);
 };

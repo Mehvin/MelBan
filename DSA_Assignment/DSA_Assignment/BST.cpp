@@ -84,6 +84,7 @@ BinaryNode* BST::findPath(BinaryNode* t, ItemType target)
 		}
 	}
 }
+
 // insert an item to the binary search tree
 void BST::insert(ItemType item)
 {
@@ -276,6 +277,52 @@ void BST::postorder(BinaryNode* t)
 	}
 }
 
+// traverse the binary search tree level by level
+List BST::levelByLevel()
+{
+	List list;
+
+	for (int i = 1; i <= getHeight(); i++)
+	{
+		levelByLevel(root, i, list);
+	}
+
+	return list;
+}
+
+void BST::levelByLevel(BinaryNode* t, ItemType level, List& list)
+{
+	if (t == NULL)
+	{
+		return;
+	}
+
+	if (level == 1)
+	{
+		list.add(t->item);
+	}
+	else if (level > 1)
+	{
+		levelByLevel(t->left, level - 1, list);
+		levelByLevel(t->right, level - 1, list);
+	}
+}
+
+// display value of given node no
+int BST::displayValueofNode(ItemType nodeNum)
+{
+	List list = levelByLevel();
+
+	if (nodeNum > list.getLength()) // nodeNum not in tree
+	{
+		return -1;
+	}
+	else 
+	{
+		return list.get(nodeNum);
+	}
+}
+
 // compute the height of the binary search tree
 int BST::getHeight()
 {
@@ -287,7 +334,6 @@ int BST::getHeight(BinaryNode* t)
 	if (t == NULL)
 		return 0;
 	else
-
 		return 1 + std::fmaxl(getHeight(t->left), getHeight(t->right));
 }
 
@@ -329,3 +375,33 @@ bool BST::isEmpty()
 {
 	return (root == NULL);
 }
+
+void BST::displayTree()
+{
+	if (isEmpty()) 
+	{
+		cout << "Tree is empty!";
+	}
+	else 
+	{
+		displayTree(root);
+	}
+}
+
+void BST::displayTree(BinaryNode *t)
+{
+	int height = getHeight();
+
+	cout << endl;
+	for (int i = 0; i < height; i++) 
+	{
+		cout << "	";
+	}
+	cout << t->item;
+
+
+
+
+	cout << endl;
+}
+

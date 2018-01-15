@@ -313,6 +313,7 @@ void BST::levelByLevel(BinaryNode* t, ItemType level, List& list)
 {
 	if (t == NULL)
 	{
+		list.add(-1);
 		return;
 	}
 
@@ -403,67 +404,110 @@ void BST::displayTree()
 	}
 	else 
 	{
-		displayTree(root);
+		//displayTree(root);
+
+
+		List lbl = levelByLevel();
+		bool check = true;
+		int power = 0;
+		int checksum;
+		while (!lbl.isEmpty())
+		{
+			checksum = pow(2, power);
+
+			if (getHeight() > 1 && power == 0)
+			{
+				cout << lbl.get(1) << endl;
+				lbl.remove(1);
+			}
+			else
+			{
+				for (int i = 1; i <= checksum; i++)
+				{
+					if (lbl.get(1) != -1 && !lbl.isEmpty())
+					{
+						cout << lbl.get(1) << " ";
+						lbl.remove(1);
+					}
+					else if (!lbl.isEmpty())
+					{
+						cout << lbl.get(1) << " ";
+
+						lbl.remove(1);
+					}
+
+					if (i == checksum)
+					{
+						cout << endl;
+					}					
+				}
+				
+			}
+			power++;
+
+		}
 	}
 }
 
 
-void BST::displayTree(BinaryNode* t)
-{
-	if (t == NULL)
-	{
-		return;
-	}
 
-	Queue q1;
-	Queue q2;
-	BinaryNode* currentNode = t;
 
-	q1.enqueue(t);
-
-	while (!q1.isEmpty() || !q2.isEmpty()) // while q1 is not empty OR while q2 is not empty
-	{
-		while (!q1.isEmpty()) 
-		{
-			q1.dequeue(currentNode);
-			t = currentNode;
-
-			cout << t->item;
-			
-			if (t->left != NULL) 
-			{
-				q2.enqueue(t->left);
-			}
-			
-			if (t->right != NULL)
-			{
-				q2.enqueue(t->right);
-			}
-		}
-
-		cout << endl;
-		
-		while (!q2.isEmpty()) 
-		{
-			q2.dequeue(currentNode);
-			t = currentNode;
-
-			cout << t->item;
-
-			if (t->left != NULL)
-			{
-				q1.enqueue(t->left);
-			}
-
-			if (t->right != NULL)
-			{
-				q1.enqueue(t->right);
-			}
-		}
-	}
-
-	cout << endl;
-
-}
+//void BST::displayTree(BinaryNode* t)
+//{
+//	if (t == NULL)
+//	{
+//		return;
+//	}
+//
+//	Queue q1;
+//	Queue q2;
+//	BinaryNode* currentNode = t;
+//
+//	q1.enqueue(t);
+//
+//	while (!q1.isEmpty() || !q2.isEmpty()) // while q1 is not empty OR while q2 is not empty
+//	{
+//		while (!q1.isEmpty()) 
+//		{
+//			q1.dequeue(currentNode);
+//			t = currentNode;
+//
+//			cout << t->item;
+//			
+//			if (t->left != NULL) 
+//			{
+//				q2.enqueue(t->left);
+//			}
+//			
+//			if (t->right != NULL)
+//			{
+//				q2.enqueue(t->right);
+//			}
+//		}
+//
+//		cout << endl;
+//		
+//		while (!q2.isEmpty()) 
+//		{
+//			q2.dequeue(currentNode);
+//			t = currentNode;
+//
+//			cout << t->item;
+//
+//			if (t->left != NULL)
+//			{
+//				q1.enqueue(t->left);
+//			}
+//
+//			if (t->right != NULL)
+//			{
+//				q1.enqueue(t->right);
+//			}
+//		}
+//	}
+//
+//	cout << endl;
+//
+//}
 
 

@@ -150,7 +150,7 @@ void List::print()
 	{
 		for (int i = 1; i <= size; i++)
 		{
-			cout << "Name: " << tempNode->item << endl;
+			cout << tempNode->item << endl;
 			tempNode = tempNode->next;
 		}
 		cout << endl;

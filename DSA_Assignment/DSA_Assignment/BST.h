@@ -1,7 +1,8 @@
 // BST.h
-
+#pragma once
 #include "BinaryNode.h"
 #include "List.h"
+#include "Queue.h"
 
 class BST
 {
@@ -70,5 +71,5 @@ public:
 
 	// display tree
 	void displayTree();
-	void displayTree(BinaryNode *t, ItemType level);
+	void displayTree(BinaryNode *t);
 };

@@ -1,5 +1,6 @@
 // BinaryNode.h
 
+#pragma once
 typedef int ItemType;
 
 struct BinaryNode

@@ -8,6 +8,7 @@ using namespace std;
 #include <string>
 #include "BST.h"
 #include "List.h"
+#include "Queue.h"
 
 // constructor
 BST::BST()
@@ -402,38 +403,67 @@ void BST::displayTree()
 	}
 	else 
 	{
-		cout << endl;
-		int height = getHeight();
-		for (int i = 1; i <= getHeight(); i++)
-		{
-			for (int j = 1; j <= height; j++) 
-			{
-				cout << "	";
-			}
-			displayTree(root, i);
-			height--;
-			cout << endl;
-		}
+		displayTree(root);
 	}
 }
 
 
-void BST::displayTree(BinaryNode* t, ItemType level)
+void BST::displayTree(BinaryNode* t)
 {
 	if (t == NULL)
 	{
 		return;
 	}
 
-	if (level == 1)
+	Queue q1;
+	Queue q2;
+	BinaryNode* currentNode = t;
+
+	q1.enqueue(t);
+
+	while (!q1.isEmpty() || !q2.isEmpty()) // while q1 is not empty OR while q2 is not empty
 	{
-		cout << t->item;
+		while (!q1.isEmpty()) 
+		{
+			q1.dequeue(currentNode);
+			t = currentNode;
+
+			cout << t->item;
+			
+			if (t->left != NULL) 
+			{
+				q2.enqueue(t->left);
+			}
+			
+			if (t->right != NULL)
+			{
+				q2.enqueue(t->right);
+			}
+		}
+
+		cout << endl;
+		
+		while (!q2.isEmpty()) 
+		{
+			q2.dequeue(currentNode);
+			t = currentNode;
+
+			cout << t->item;
+
+			if (t->left != NULL)
+			{
+				q1.enqueue(t->left);
+			}
+
+			if (t->right != NULL)
+			{
+				q1.enqueue(t->right);
+			}
+		}
 	}
-	else if (level > 1)
-	{
-		displayTree(t->left, level - 1);
-		displayTree(t->right, level - 1);
-	}
+
+	cout << endl;
+
 }
 
 

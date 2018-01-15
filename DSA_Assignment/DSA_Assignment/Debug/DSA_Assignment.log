@@ -1,2 +1,4 @@
-﻿  DSA_Assignment.cpp
+﻿  BST.cpp
+c:\users\npstudent\desktop\melban\dsa_assignment\dsa_assignment\bst.cpp(355): warning C4244: 'return': conversion from 'long double' to 'int', possible loss of data
+c:\users\npstudent\desktop\melban\dsa_assignment\dsa_assignment\bst.cpp(126): warning C4715: 'BST::remove': not all control paths return a value
   DSA_Assignment.vcxproj -> C:\Users\NPStudent\Desktop\MelBan\DSA_Assignment\Debug\DSA_Assignment.exe

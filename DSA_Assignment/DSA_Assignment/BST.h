@@ -70,5 +70,5 @@ public:
 
 	// display tree
 	void displayTree();
-	void displayTree(BinaryNode *t);
+	void displayTree(BinaryNode *t, ItemType level);
 };

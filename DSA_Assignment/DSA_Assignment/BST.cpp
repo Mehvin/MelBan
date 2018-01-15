@@ -157,8 +157,26 @@ void BST::remove(BinaryNode* &t, ItemType target)
 
 	if (found)
 	{
+		// -----------------------  case 0 : removing root of unbalance tree ------------------------
+		if (current == t)
+		{
+			if (current->left != NULL)
+			{
+				current = current->left;
+				root = current;
+			}
+			else if (current->right != NULL)
+			{
+				current = current->right;
+				root = current;
+			}
+			else
+			{
+				root = NULL;
+			}
+		}
 		// -----------------------  case 1 : node is a leaf ------------------------
-		if (current->left == NULL && current->right == NULL)
+		else if (current->left == NULL && current->right == NULL)
 		{
 			if (current == t)	// node to be deleted is a root
 				t = NULL;
@@ -175,7 +193,7 @@ void BST::remove(BinaryNode* &t, ItemType target)
 				if (isLeftChild)
 					parent->left = current->right;
 				else
-					parent->right = current->right;;
+					parent->right = current->right;
 			}
 			else
 				if (current->right == NULL)
@@ -384,24 +402,38 @@ void BST::displayTree()
 	}
 	else 
 	{
-		displayTree(root);
+		cout << endl;
+		int height = getHeight();
+		for (int i = 1; i <= getHeight(); i++)
+		{
+			for (int j = 1; j <= height; j++) 
+			{
+				cout << "	";
+			}
+			displayTree(root, i);
+			height--;
+			cout << endl;
+		}
 	}
 }
 
-void BST::displayTree(BinaryNode *t)
+
+void BST::displayTree(BinaryNode* t, ItemType level)
 {
-	int height = getHeight();
-
-	cout << endl;
-	for (int i = 0; i < height; i++) 
+	if (t == NULL)
 	{
-		cout << "	";
+		return;
 	}
-	cout << t->item;
 
-
-
-
-	cout << endl;
+	if (level == 1)
+	{
+		cout << t->item;
+	}
+	else if (level > 1)
+	{
+		displayTree(t->left, level - 1);
+		displayTree(t->right, level - 1);
+	}
 }
+
 

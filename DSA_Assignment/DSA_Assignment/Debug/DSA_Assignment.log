@@ -1,5 +1,2 @@
-﻿  BST.cpp
-c:\users\bryanseah\documents\ngeeannpoly\information technology\year 2\semester 4\dsa\assignment\melban\dsa_assignment\dsa_assignment\bst.cpp(357): warning C4244: 'return': conversion from 'long double' to 'int', possible loss of data
-c:\users\bryanseah\documents\ngeeannpoly\information technology\year 2\semester 4\dsa\assignment\melban\dsa_assignment\dsa_assignment\bst.cpp(416): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-c:\users\bryanseah\documents\ngeeannpoly\information technology\year 2\semester 4\dsa\assignment\melban\dsa_assignment\dsa_assignment\bst.cpp(127): warning C4715: 'BST::remove': not all control paths return a value
-  DSA_Assignment.vcxproj -> C:\Users\BryanSeah\Documents\NgeeAnnPoly\Information Technology\Year 2\Semester 4\DSA\Assignment\MelBan\DSA_Assignment\Debug\DSA_Assignment.exe
+﻿  DSA_Assignment.cpp
+  DSA_Assignment.vcxproj -> C:\Users\NPStudent\Desktop\MelBan\DSA_Assignment\Debug\DSA_Assignment.exe

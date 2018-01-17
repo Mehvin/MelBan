@@ -158,7 +158,7 @@ void BST::remove(BinaryNode* &t, ItemType target)
 	if (found)
 	{
 		// -----------------------  case 0 : removing root of unbalance tree ------------------------
-		if (current == t)
+		if (current == t) // node to be deleted is a root
 		{
 			if (current->left != NULL)
 			{
@@ -180,7 +180,7 @@ void BST::remove(BinaryNode* &t, ItemType target)
 		{
 			if (current == t)	// node to be deleted is a root
 				t = NULL;
-			else
+			if (current != t)
 				if (isLeftChild)
 					parent->left = NULL;
 				else
@@ -394,34 +394,59 @@ bool BST::isEmpty()
 	return (root == NULL);
 }
 
+int BST::getMaxSpaces() 
+{
+	List lastLevelList;
+
+	displayTree(root, getHeight(), lastLevelList); // storing all last level nodes in list
+
+	return (lastLevelList.getLength() * 2) -1;
+}
+
+string BST::spaceMultipler(int noOfSpaces)
+{
+	string spaces = "";
+
+	for (int i = 0; i < noOfSpaces; i++) 
+	{
+		spaces += " ";
+	}
+
+	return spaces;
+}
+
 void BST::displayTree()
 {
 	int heightOfTree = getHeight();
-	List list;
+
+	int oldSpaces = getMaxSpaces();
+	int newSpaces = oldSpaces;
 
 	for (int i = 1; i <= getHeight(); i++)
 	{
-		for (int i = 1; i <= heightOfTree; i++)
-		{
-			cout << "	";
-			heightOfTree--;
-		}
-
+		cout << spaceMultipler(newSpaces);
+		List list;
 		displayTree(root, i, list);
 		
 		for (int j = 1; j <= list.getLength(); j++) 
 		{
 			if (list.get(j) == -1) 
 			{
-				cout << "	";
+				cout << "x";
 			}
 			else 
 			{
-				cout << list.get(j) << "	";
+				cout << list.get(j);
 			}
+			cout << spaceMultipler(oldSpaces);
 		}
 		cout << endl;
-		list.clear();
+
+		if (i > 1)
+		{
+			oldSpaces = newSpaces;
+		}
+		newSpaces = newSpaces / 2;
 	}
 }
 

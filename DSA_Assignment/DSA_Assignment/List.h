@@ -42,8 +42,5 @@ public:
 
 	// display all the items in the list
 	void print();
-
-	// delete everything in list
-	void clear();
 };
 

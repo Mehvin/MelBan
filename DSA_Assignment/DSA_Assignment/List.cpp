@@ -156,12 +156,3 @@ void List::print()
 		cout << endl;
 	}
 }
-
-// delete all items in the list
-void List::clear() 
-{
-	for (int i = 1; i <= size; i++) 
-	{
-		remove(i);
-	}
-}

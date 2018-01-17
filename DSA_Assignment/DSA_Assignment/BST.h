@@ -69,6 +69,8 @@ public:
 	bool isEmpty();
 
 	// display tree
+	int getMaxSpaces();
+	string spaceMultipler(int noOfSpaces);
 	void displayTree();
 	void displayTree(BinaryNode* t, ItemType level, List& list);
 };

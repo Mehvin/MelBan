@@ -223,19 +223,37 @@ void BST::remove(BinaryNode* &t, ItemType target)
 // traverse the binary search tree in inorder
 void BST::inorder()
 {
-	if (isEmpty())
+	List list;
+
+	if (isEmpty()) 
+	{
 		cout << "No item found" << endl;
+	}
 	else
-		inorder(root);
+	{
+		inorder(root, list);
+	}
+
+	for (int i = 1; i <= list.getLength(); i++) 
+	{
+		if (i == list.getLength()) // last number
+		{
+			cout << list.get(i);
+		}
+		else 
+		{
+			cout << list.get(i) << ", ";
+		}
+	}
 }
 
-void BST::inorder(BinaryNode* t)
+void BST::inorder(BinaryNode* t, List& list)
 {
 	if (t != NULL)
 	{
-		inorder(t->left);
-		cout << t->item << ", ";
-		inorder(t->right);
+		inorder(t->left, list);
+		list.add(t->item);
+		inorder(t->right, list);
 	}
 }
 
@@ -254,44 +272,6 @@ void BST::listOfAllValues(BinaryNode* t, List& list) // using in-order traversal
 		listOfAllValues(t->left, list);
 		list.add(t->item);
 		listOfAllValues(t->right, list);
-	}
-}
-
-// traverse the binary search tree in preorder
-void BST::preorder()
-{
-	if (isEmpty())
-		cout << "No item found" << endl;
-	else
-		preorder(root);
-}
-
-void BST::preorder(BinaryNode* t)
-{
-	if (t != NULL)
-	{
-		cout << t->item << endl;
-		preorder(t->left);
-		preorder(t->right);
-	}
-}
-
-// traverse the binary search tree in postorder
-void BST::postorder()
-{
-	if (isEmpty())
-		cout << "No item found" << endl;
-	else
-		postorder(root);
-}
-
-void BST::postorder(BinaryNode* t)
-{
-	if (t != NULL)
-	{
-		postorder(t->left);
-		postorder(t->right);
-		cout << t->item << endl;
 	}
 }
 
@@ -369,25 +349,6 @@ int BST::countNodes(BinaryNode* t)
 		return 1 + countNodes(t->left) + countNodes(t->right);
 }
 
-// check if the binary search tree is balanced
-bool BST::isBalanced()
-{
-	return isBalanced(root);
-}
-
-bool BST::isBalanced(BinaryNode *t)
-{
-	if (t != NULL)
-	{
-		int leftHeight = getHeight(t->left);	// height of left sub-tree
-		int rightHeight = getHeight(t->right);	// height of right sub-tree
-		bool isBalancedNode = (abs(leftHeight - rightHeight) <= 1);
-		return (isBalancedNode && isBalanced(t->left) && isBalanced(t->right));
-	}
-	else
-		return true;
-}
-
 // check if the binary search tree is empty
 bool BST::isEmpty()
 {
@@ -403,7 +364,7 @@ int BST::getMaxSpaces()
 	return (lastLevelList.getLength() * 2) -1;
 }
 
-string BST::spaceMultipler(int noOfSpaces)
+string BST::spaceMultiplier(int noOfSpaces)
 {
 	string spaces = "";
 
@@ -424,7 +385,7 @@ void BST::displayTree()
 
 	for (int i = 1; i <= getHeight(); i++)
 	{
-		cout << spaceMultipler(newSpaces);
+		cout << spaceMultiplier(newSpaces);
 		List list;
 		displayTree(root, i, list);
 		
@@ -438,7 +399,7 @@ void BST::displayTree()
 			{
 				cout << list.get(j);
 			}
-			cout << spaceMultipler(oldSpaces);
+			cout << spaceMultiplier(oldSpaces);
 		}
 		cout << endl;
 

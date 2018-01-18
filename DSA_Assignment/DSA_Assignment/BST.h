@@ -32,26 +32,18 @@ public:
 
 	// traverse the binary search tree in inorder
 	void inorder();
-	void inorder(BinaryNode* t);
+	void inorder(BinaryNode* t, List& list);
 
 	// traverse the binary search tree in preorder
 	List listOfAllValues();
 	void listOfAllValues(BinaryNode* t, List& list);
 
-	// traverse the binary search tree in preorder
-	void preorder();
-	void preorder(BinaryNode* t);
-
-	// traverse the binary search tree in postorder
-	void postorder();
-	void postorder(BinaryNode* t);
-
-	// return integer of value of given node no
-	int displayValueofNode(ItemType nodeNum);
-
 	// traverse the binary search tree level by level
 	List levelByLevel();
 	void levelByLevel(BinaryNode* t, ItemType level, List& list);
+
+	// return integer of value of given node no
+	int displayValueofNode(ItemType nodeNum);
 
 	// compute the height of the binary search tree
 	int getHeight();
@@ -61,16 +53,12 @@ public:
 	int countNodes();
 	int countNodes(BinaryNode* t);
 
-	// check if the binary search tree is balanced
-	bool isBalanced();
-	bool isBalanced(BinaryNode *t);
-
 	// check if the binary search tree is empty
 	bool isEmpty();
 
 	// display tree
 	int getMaxSpaces();
-	string spaceMultipler(int noOfSpaces);
+	string spaceMultiplier(int noOfSpaces);
 	void displayTree();
 	void displayTree(BinaryNode* t, ItemType level, List& list);
 };

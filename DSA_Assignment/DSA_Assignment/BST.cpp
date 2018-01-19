@@ -220,7 +220,7 @@ void BST::remove(BinaryNode* &t, ItemType target)
 	}
 }
 
-// traverse the binary search tree in inorder
+// traverse the binary search tree in inorder and displaying it
 void BST::inorder()
 {
 	List list;
@@ -261,18 +261,8 @@ void BST::inorder(BinaryNode* t, List& list)
 List BST::listOfAllValues()
 {
 	List list;
-	listOfAllValues(root, list);
+	inorder(root, list);
 	return list;
-}
-
-void BST::listOfAllValues(BinaryNode* t, List& list) // using in-order traversal, add all values to array
-{
-	if (t != NULL)
-	{
-		listOfAllValues(t->left, list);
-		list.add(t->item);
-		listOfAllValues(t->right, list);
-	}
 }
 
 // traverse the binary search tree level by level
@@ -355,15 +345,17 @@ bool BST::isEmpty()
 	return (root == NULL);
 }
 
+// get the max spaces - used in display tree
 int BST::getMaxSpaces() 
 {
 	List lastLevelList;
 
-	displayTree(root, getHeight(), lastLevelList); // storing all last level nodes in list
+	levelByLeveForDisplay(root, getHeight(), lastLevelList); // storing all last level nodes in list
 
 	return (lastLevelList.getLength() * 2) -1;
 }
 
+// return string of spaces
 string BST::spaceMultiplier(int noOfSpaces)
 {
 	string spaces = "";
@@ -376,6 +368,7 @@ string BST::spaceMultiplier(int noOfSpaces)
 	return spaces;
 }
 
+// display layout of tree
 void BST::displayTree()
 {
 	int heightOfTree = getHeight();
@@ -387,7 +380,7 @@ void BST::displayTree()
 	{
 		cout << spaceMultiplier(newSpaces);
 		List list;
-		displayTree(root, i, list);
+		levelByLeveForDisplay(root, i, list);
 		
 		for (int j = 1; j <= list.getLength(); j++) 
 		{
@@ -403,7 +396,7 @@ void BST::displayTree()
 		}
 		cout << endl;
 
-		if (i > 1)
+		if (i > 1) // only for levels that are not the first one
 		{
 			oldSpaces = newSpaces;
 		}
@@ -411,7 +404,8 @@ void BST::displayTree()
 	}
 }
 
-void BST::displayTree(BinaryNode* t, ItemType level, List& list)
+// level by level travesal (but includes adding NULL nodes into list as -1)
+void BST::levelByLeveForDisplay(BinaryNode* t, ItemType level, List& list)
 {
 	if (level == 1)
 	{
@@ -419,22 +413,22 @@ void BST::displayTree(BinaryNode* t, ItemType level, List& list)
 		{
 			list.add(t->item);
 		}
-		else 
+		else // NULL nodes are added as -1 in list
 		{
 			list.add(-1);
 		}
 	}
 	else if (level > 1)
 	{
-		if (t == NULL)
+		if (t == NULL) // to ensure that travesal is done for even NULL nodes
 		{
-			displayTree(NULL, level - 1, list);
-			displayTree(NULL, level - 1, list);
+			levelByLeveForDisplay(NULL, level - 1, list);
+			levelByLeveForDisplay(NULL, level - 1, list);
 		}
 		else 
 		{
-			displayTree(t->left, level - 1, list);
-			displayTree(t->right, level - 1, list);
+			levelByLeveForDisplay(t->left, level - 1, list);
+			levelByLeveForDisplay(t->right, level - 1, list);
 		}
 	}
 }

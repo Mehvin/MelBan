@@ -1,3 +1,9 @@
-﻿  DSA_Assignment.cpp
+﻿  BST.cpp
+c:\users\npstudent\desktop\melban\dsa_assignment\dsa_assignment\bst.cpp(325): warning C4244: 'return': conversion from 'long double' to 'int', possible loss of data
+  Generating Code...
+c:\users\npstudent\desktop\melban\dsa_assignment\dsa_assignment\bst.cpp(126): warning C4715: 'BST::remove': not all control paths return a value
+  Compiling...
+  DSA_Assignment.cpp
 c:\users\npstudent\desktop\melban\dsa_assignment\dsa_assignment\dsa_assignment.cpp(100): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+  Generating Code...
   DSA_Assignment.vcxproj -> C:\Users\NPStudent\Desktop\MelBan\DSA_Assignment\Debug\DSA_Assignment.exe

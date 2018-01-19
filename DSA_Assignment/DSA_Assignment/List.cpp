@@ -135,24 +135,3 @@ bool List::isEmpty() { return size == 0; }
 
 // check the size of the list
 int List::getLength() { return size; }
-
-// display the items in the list
-void List::print()
-{
-	Node *tempNode = firstNode;
-
-	if (isEmpty())
-	{
-		cout << "List is empty" << endl;
-	}
-
-	else
-	{
-		for (int i = 1; i <= size; i++)
-		{
-			cout << "Item: " << tempNode->item << endl;
-			tempNode = tempNode->next;
-		}
-		cout << endl;
-	}
-}

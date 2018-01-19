@@ -60,5 +60,5 @@ public:
 	int getMaxSpaces();
 	string spaceMultiplier(int noOfSpaces);
 	void displayTree();
-	void displayTree(BinaryNode* t, ItemType level, List& list);
+	void levelByLeveForDisplay(BinaryNode* t, ItemType level, List& list);
 };

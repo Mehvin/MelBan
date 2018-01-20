@@ -123,6 +123,10 @@ bool BST::remove(ItemType target)
 	{
 		return false; // return false = unsuccessful in removing
 	}
+	else
+	{
+		return true;
+	}
 }
 
 void BST::remove(BinaryNode* &t, ItemType target)
@@ -220,7 +224,7 @@ void BST::remove(BinaryNode* &t, ItemType target)
 	}
 }
 
-// traverse the binary search tree in inorder and displaying it
+// traverse the binary search tree inorder and display it
 void BST::inorder()
 {
 	List list;

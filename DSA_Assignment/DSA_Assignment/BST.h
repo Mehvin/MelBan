@@ -36,7 +36,6 @@ public:
 
 	// traverse the binary search tree in preorder
 	List listOfAllValues();
-	void listOfAllValues(BinaryNode* t, List& list);
 
 	// traverse the binary search tree level by level
 	List levelByLevel();
@@ -56,7 +55,7 @@ public:
 	// check if the binary search tree is empty
 	bool isEmpty();
 
-	// display tree
+	// for display tree
 	int getMaxSpaces();
 	string spaceMultiplier(int noOfSpaces);
 	void displayTree();

@@ -1,3 +1,2 @@
 # MelBan
-DSA Assignment Done
-Never again with Bryan
+DSA assignment done (never again with Bryan)
